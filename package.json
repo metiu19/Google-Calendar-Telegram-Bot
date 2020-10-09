@@ -1,0 +1,23 @@
+{
+  "name": "google-calendar-telegram-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metiu19/Google-Calendar-Telegram-Bot.git"
+  },
+  "author": "metiu19",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/metiu19/Google-Calendar-Telegram-Bot/issues"
+  },
+  "homepage": "https://github.com/metiu19/Google-Calendar-Telegram-Bot#readme",
+  "dependencies": {
+    "googleapis": "^61.0.0",
+    "telegram-bot-api": "^2.0.1"
+  }
+}
