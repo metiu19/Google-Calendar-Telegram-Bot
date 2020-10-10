@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/metiu19/Google-Calendar-Telegram-Bot#readme",
   "dependencies": {
+    "delay": "^4.4.0",
     "googleapis": "^61.0.0",
     "telegram-bot-api": "^2.0.1"
   }
