@@ -59,7 +59,7 @@ bot.on('update', update => {
 function GetEvents(chatId) {    
     const StartDate = new Date();
     const EndDate = new Date();
-    EndDate.setDate(EndDate.getDay() + 12);
+    EndDate.setDate(EndDate.getDay() + 11);
     calendar.calendarList.list({})
         .then(res => {
             const calendarId = res.data.items[0].id;
