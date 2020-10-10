@@ -1,5 +1,4 @@
 const Tokens = require('./Tokens.json');
-const delay = require('delay');
 
 // Bot set up
 const Telegram = require('telegram-bot-api');
