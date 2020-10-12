@@ -55,33 +55,35 @@ bot.on('update', update => {
 });
 
 // Get Calendar Events List
-function GetEvents(chatId) {    
+function GetEvents(chatId) {
     const StartDate = new Date();
     const EndDate = new Date();
-    EndDate.setDate(EndDate.getDay() + 11);
+    EndDate.setDate(EndDate.getDate() + parseInt(7));
     calendar.calendarList.list({})
-        .then(res => {
-            const calendarId = res.data.items[0].id;
-            calendar.events.list({
-                calendarId: calendarId,
-                orderBy: 'startTime',
-                singleEvents: true,
-                timeMax: EndDate,
-                timeMin: StartDate
-            })
-            .then(events => {
-                var message = ``;
-                events.data.items.forEach(item => {
-                    const dateTime = item.start.dateTime;
-                    var date = dateTime.slice(0, 10).split('-');
-                    message = message + `Materia: ${item.summary}\nCompito: ${item.description}\nPer: ${date[2]}/${date[1]}/${date[0]}\n\n`;
-                });
-                bot.sendMessage({
-                    chat_id: chatId,
-                    text: message
-                });
-            })
-            .catch(err => console.error('Get Event List error: ' + err));
+    .then(res => {
+        const calendarId = res.data.items[0].id;
+        calendar.events.list({
+            calendarId: calendarId,
+            orderBy: 'startTime',
+            singleEvents: true,
+            timeMax: EndDate,
+            timeMin: StartDate
         })
-        .chat(err => console.error('Get Calendars List error: ' + err));
+        .then(events => {
+            var message = ``;
+            events.data.items.forEach(item => {
+                const dateTime = new String(item.start.dateTime);
+                var date = dateTime.slice(0, 10).split('-');
+                message = message + `Materia: ${item.summary}\nCompito: ${item.description}\nPer: ${date[2]}/${date[1]}/${date[0]}\n\n`;
+            });
+            bot.sendMessage({
+                chat_id: chatId,
+                text: message
+            });
+        })
+        .catch(err => console.error('Get Calendar List error: ' + err));
+    })
+    .catch(err => {
+        console.error('Get Calendar List error: ' + err);
+    });
 }
