@@ -25,10 +25,10 @@ const calendar = google.calendar({ version: 'v3', auth: OAuth2Client });
 
 // Telegram bot update endler
 bot.on('update', update => {
-    var message = update.message.text;
-    if(message.startsWith('/')) {
+    var message = update.message.text.split(" ");
+    if(message[0].startsWith('/')) {
         var chatId = update.message.chat.id;
-        switch (message) {
+        switch (message[0]) {
             case '/ping':
                 bot.sendMessage({
                     chat_id: chatId,
@@ -36,7 +36,10 @@ bot.on('update', update => {
                 });
                 break;
             case '/compiti':
-                GetEvents(chatId);
+                var days
+                if (message[1]) days = message[1];
+                if (!message[1]) days = 7
+                GetEvents(chatId, days);
                 break;
             case '/help':
                 bot.sendMessage({
@@ -55,10 +58,10 @@ bot.on('update', update => {
 });
 
 // Get Calendar Events List
-function GetEvents(chatId) {
+function GetEvents(chatId, days) {
     const StartDate = new Date();
     const EndDate = new Date();
-    EndDate.setDate(EndDate.getDate() + parseInt(7));
+    EndDate.setDate(EndDate.getDate() + parseInt(days));
     calendar.calendarList.list({})
     .then(res => {
         const calendarId = res.data.items[0].id;
