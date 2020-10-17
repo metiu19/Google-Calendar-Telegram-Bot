@@ -25,3 +25,6 @@ You have to put all of them inside a file called `tokens.json` using the this sc
     "BotToken": "Telegram bot token here"
 }
 ```
+## Change log
+### 1.0.0-beta-3
+- Added possibility to select days in `/compiti` (the default selection is `7` days)
