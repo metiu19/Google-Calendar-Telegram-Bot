@@ -37,8 +37,11 @@ bot.on('update', update => {
                 break;
             case '/compiti':
                 var days
-                if (message[1]) days = message[1];
-                if (!message[1]) days = 7
+                if (message[1]) {
+                    days = message[1];
+                } else {
+                    days = 7;
+                }
                 GetEvents(chatId, days);
                 break;
             case '/help':
